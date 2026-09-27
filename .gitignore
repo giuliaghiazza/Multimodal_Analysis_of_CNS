@@ -1,0 +1,53 @@
+# ============================================================
+# Multimodal — heavy data & outputs stay LOCAL (too big for git)
+# ============================================================
+
+# ---- Vendored toolboxes (install separately, see README) ----
+eeglab2026.0.0/
+
+# ---- Local archives (kept on disk, never pushed) ----
+EEG_Asymmetry/archive/
+EEG_Asymmetry/experiments/
+
+# ---- EEG data ----
+EEG_Asymmetry/DATA/
+EEG_Asymmetry/PROCESSED_DATA/
+*.fdt
+*.set
+*.eeg
+*.vhdr
+*.vmrk
+*.edf
+*.bdf
+*.mff/
+*.zip
+
+# ---- fMRI data ----
+fMRI/data/
+fMRI/output/
+fMRI/outputanalysis/
+*.nii
+
+# ---- fNIRS data ----
+*.snirf
+*.nirs
+*.DAT
+*.wl1
+*.wl2
+*.tri
+*.hdr
+NIRS/Motor/CW*/
+
+# ---- MATLAB binaries / results ----
+*.mat
+*.fig
+# except small config/batch files needed to reproduce pipelines
+!fMRI/spm_batch/*.mat
+!NIRS/Codes/*.mat
+
+# ---- Misc junk ----
+*.log
+*.asv
+.DS_Store
+._*
+__MACOSX/
