@@ -1,7 +1,7 @@
 %% HOMER3 CW-fNIRS pipeline (single script) + BlockAvg + GLM
 clear; close all; clc
 
-%% -------- PATHS (metti SOLO Homer3; evita Homer2 per conflitti) --------
+%% -------- PATHS (set ONLY Homer3; avoid Homer2 to prevent conflicts) --------
 % HOMER3_DIR = 'C:\Users\catea\Downloads\Homer3-master';  % <-- ok
 HOMER3_DIR = 'C:\Users\catea\Downloads\Homer3-master'; 
 % addpath(genpath('C:\Users\Public\homer3\'))
@@ -20,7 +20,7 @@ turnon_wavelet = 1;
 hpf = 0.01;
 lpf = 0.2;
 
-ppf = [6 6];     % deve matchare #wavelengths
+ppf = [6 6];     % must match #wavelengths
 
 %% -------- GLM PARAMS --------
 trange = [-2 20];
@@ -39,14 +39,14 @@ assert(exist(snirfFile,'file')==2, 'SNIRF not found: %s', snirfFile);
 
 sn = SnirfClass(snirfFile);
 methods(sn.stim)
-snirf = SnirfClass(snirfFile);   % invece di SnirfLoad
-dcObj = snirf.data;              % oppure snirf.data(1) se array
-dataObj = snirf.data;      % OGGETTO (non matrice)
+snirf = SnirfClass(snirfFile);   % instead of SnirfLoad
+dcObj = snirf.data;              % or snirf.data(1) if array
+dataObj = snirf.data;      % OBJECT (not matrix)
 probe   = snirf.probe;
 
 t = get_time_from_data(dataObj);
 
-% nMeas: numero misure direttamente dai dati (robusto con la tua versione)
+% nMeas: number of measurements taken directly from the data (robust with your version)
 if numel(dataObj) > 1
     d0 = dataObj(1);
 else
@@ -78,7 +78,7 @@ condNames = get_stim_names(snirf.stim);
 % 1) Intensity -> OD
 dodObj = hmrR_Intensity2OD(dataObj);
 
-% 2) Motion correction wavelet (tua signature)
+% 2) Wavelet motion correction (your version)
 dodObj = hmrR_MotionCorrectWavelet(dodObj, mlActMan, mlActAuto, iqr_wavelet, turnon_wavelet);
 
 % 3) Bandpass
@@ -115,10 +115,10 @@ title('BlockAvg HbO - all conditions')
 %% ================= GLM =================
 
 % ----- REQUIRED CELL FORMAT FOR HOMER3 -----
-% Forza il measlist completo nel data object
+% Force the full measlist into the data object
 ml_full = snirf.data(1).GetMeasList('reshape');
 dcObj(1).SetMeasList(ml_full);
-ml = dcObj(1).GetMeasList('reshape');   % NON SrcDetPairs
+ml = dcObj(1).GetMeasList('reshape');   % NOT SrcDetPairs
 
 nMeas = size(ml,1);
 

@@ -150,20 +150,20 @@ T = table( ...
 disp(T);
 disp(T_allplacements);
 
-fprintf('\nDPF stimata a 760 nm (interpolazione lineare locale 730-780): %.6f\n', DPF_760);
-fprintf('DPF stimata a 850 nm (estrapolazione lineare 780-830): %.6f\n', DPF_850);
+fprintf('\nEstimated DPF at 760 nm (local linear interpolation 730-780): %.6f\n', DPF_760);
+fprintf('Estimated DPF at 850 nm (linear extrapolation 780-830): %.6f\n', DPF_850);
 
 % % Save CSV
 % writetable(T, 'DPF_results_allfiles.csv');
 % disp('Results saved in DPF_results_allfiles.csv');
 
-%% Heatmap DPF per file e lunghezza d'onda
+%% DPF heatmap per file and wavelength
 figure;
 h = heatmap(string(lambda) + " nm", string({files.name})', DPF_mean_wl, ...
     'CellLabelFormat', '%.3f');
 gcf.Color = 'w';
 h.FontColor = 'k';
-h.Title = 'Heatmap DPF medio per file e lunghezza d''onda';
+h.Title = 'Mean DPF heatmap per file and wavelength';
 h.XLabel = 'Wavelength';
 h.YLabel = 'File';
 h.Colormap = jet(256);

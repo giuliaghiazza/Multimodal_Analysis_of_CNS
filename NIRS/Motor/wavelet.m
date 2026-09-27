@@ -19,7 +19,7 @@ HOMER3_DIR = '/home/giulia/MATLAB/Toolboxes/Homer3';
 addpath(genpath(HOMER3_DIR));
 
 %% ================= INPUT =================
-snirfFile = '/home/giulia/Scrivania/NIRS multimodal/Motor/Motor/CW - Motor/2025-04-01_001.snirf';
+snirfFile = fullfile(fileparts(mfilename('fullpath')), 'CW - Motor', '2025-04-01_001.snirf');
 
 keepStims = ["1","2"];
 % Only these stimulus labels will be kept if they exist in the file.
@@ -702,7 +702,7 @@ text(1, yText1, sprintf('p = %.4f', p_task1_hemi), ...
 text(2, yText2, sprintf('p = %.4f', p_task2_hemi), ...
     'HorizontalAlignment','center', 'FontWeight','bold')
 %% ================= SNR CALCULATION =================
-baselineWindow = [-2 0];   % prima dello stimolo
+baselineWindow = [-2 0];   % before the stimulus
 signalWindow   = [4 8];    % risposta HRF
 
 Condition = strings(0,1);

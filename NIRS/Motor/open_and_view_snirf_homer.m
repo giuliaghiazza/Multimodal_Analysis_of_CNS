@@ -12,7 +12,7 @@ end
 addpath(genpath(HOMER3_DIR));
 
 %% ================= INPUT =================
-snirfFile = '/home/giulia/Scrivania/NIRS multimodal/Motor/Motor/CW - Motor/2025-04-01_001.snirf';
+snirfFile = fullfile(fileparts(mfilename('fullpath')), 'CW - Motor', '2025-04-01_001.snirf');
 exampleMeas = 1;
 
 assert(exist(snirfFile, 'file') == 2, 'SNIRF not found: %s', snirfFile);

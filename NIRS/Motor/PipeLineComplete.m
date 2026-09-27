@@ -21,7 +21,7 @@ HOMER3_DIR = 'C:\Users\catea\Downloads\Homer3-master';
 addpath(genpath(HOMER3_DIR));
 
 %% ================= INPUT =================
-snirfFile = '/home/giulia/Scrivania/NIRS multimodal/Motor/Motor/CW - Motor/2025-04-01_001.snirf';
+snirfFile = fullfile(fileparts(mfilename('fullpath')), 'CW - Motor', '2025-04-01_001.snirf');
 
 keepStims = ["1","2"];
 % Only these stimulus labels will be kept if they exist in the file.

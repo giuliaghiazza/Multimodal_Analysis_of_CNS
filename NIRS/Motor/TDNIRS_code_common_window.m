@@ -81,7 +81,7 @@ fileCodes = nan(nFiles,1);
 for f = 1:nFiles
     tok = regexp(files(f).name, '(\d{4})\.DAT$', 'tokens', 'once');
     if isempty(tok)
-        error('Impossibile estrarre il codice numerico dal file: %s', files(f).name);
+        error('Unable to extract numeric code from file: %s', files(f).name);
     end
     fileCodes(f) = str2double(tok{1});
 end
@@ -154,14 +154,14 @@ for f = 1:nFiles
 end
 
 if nRepresentative == 0
-    error('Impossibile definire la finestra temporale: nessuna curva valida.');
+    error('Unable to define the time window: no valid curve.');
 end
 
 representative_curve = representative_sum ./ nRepresentative;
 
 idx = find(representative_curve > threshold_fraction * max(representative_curve));
 if isempty(idx)
-    error('Nessuna finestra temporale valida trovata. Ridurre threshold_fraction.');
+    error('No valid time window found. Lower threshold_fraction.');
 end
 
 i1 = max(1, idx(1) - window_margin_ch);
@@ -293,15 +293,15 @@ T = table( ...
 disp(T);
 disp(T_allplacements);
 
-fprintf('\nDPF stimata a 760 nm (interpolazione lineare locale 730-780): %.6f\n', DPF_760);
-fprintf('DPF stimata a 850 nm (estrapolazione lineare 780-830): %.6f\n', DPF_850);
+fprintf('\nEstimated DPF at 760 nm (local linear interpolation 730-780): %.6f\n', DPF_760);
+fprintf('Estimated DPF at 850 nm (linear extrapolation 780-830): %.6f\n', DPF_850);
 
 % Save CSV files
 writetable(T, 'DPF_results_common_window.csv');
 writetable(T_allplacements, 'DPF_summary_common_window.csv');
 disp('Results saved in DPF_results_common_window.csv and DPF_summary_common_window.csv');
 
-%% Heatmap DPF per file/segmento e lunghezza d'onda
+%% DPF heatmap per file/segment and wavelength
 rowLabels = "Seg " + string(segmentID) + " | " + string({files.name})';
 
 figure;
@@ -309,7 +309,7 @@ h = heatmap(string(lambda) + " nm", rowLabels, DPF_mean_wl, ...
     'CellLabelFormat', '%.3f');
 gcf.Color = 'w';
 h.FontColor = 'k';
-h.Title = 'Heatmap DPF medio per segmento e lunghezza d''onda';
+h.Title = 'Mean DPF heatmap per segment and wavelength';
 h.XLabel = 'Wavelength';
 h.YLabel = 'Segment / File';
 h.Colormap = jet(256);

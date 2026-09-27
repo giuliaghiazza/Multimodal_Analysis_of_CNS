@@ -298,9 +298,9 @@ disp(T_results);
 disp(T_summary);
 
 % Save CSV files
-writetable(T_results, 'DPF_results_finestra_var.csv');
-writetable(T_summary, 'DPF_summary_finestra_var.csv');
-disp('Results saved in DPF_results_finestra_var.csv and DPF_summary_finestra_var.csv');
+writetable(T_results, 'DPF_results_variable_window.csv');
+writetable(T_summary, 'DPF_summary_variable_window.csv');
+disp('Results saved in DPF_results_variable_window.csv and DPF_summary_variable_window.csv');
 
 %% DPF heatmaps by file/segment and wavelength
 rowLabels = "Segment " + string(segmentID) + ": " + segmentOptodeLabels(segmentID);
@@ -341,7 +341,7 @@ plot_threshold_summary( ...
     DPF_mean_allplacements_by_thr, DPF_std_allplacements_by_thr);
 
 % Optional: save figure
-% exportgraphics(gcf, 'DPF_threshold_summary_finestra_var.png', 'Resolution', 300);
+% exportgraphics(gcf, 'DPF_threshold_summary_variable_window.png', 'Resolution', 300);
 
 % ==========================================================
 %% Local helper functions

@@ -25,7 +25,7 @@ To reproduce the EEG analysis, extract `EEG_Asymmetry/DATA.zip` to
   The EEG scripts auto-add it to the MATLAB path; if missing, reinstall EEGLAB
   and run `addpath('eeglab2026.0.0')` once.
 - **SPM12** for `fMRI/`
-- **Homer3** for `NIRS/Codes/` (edit `HOMER3_DIR` in `PipiLineHomer.m`)
+- **Homer3** for `NIRS/Codes/` (edit `HOMER3_DIR` in `Homer3_pipeline.m`)
 
 ## EEG pipeline order
 
@@ -35,8 +35,6 @@ Run from `EEG_Asymmetry/`:
 2. `GFP_HFP.m` and `AI.m` — feature extraction → `RESULTS/` (can run in parallel)
 3. `statisticalTest.m` (or `statisticalTestHedges_maxTfixed.m`) — group stats
 4. `visualize.m` — bar plots, heatmaps, topoplots → `RESULTS/FIGURES/`
-
-See `EEG_Asymmetry/AGENTS.md` for the full reference.
 
 ## Repo layout
 
@@ -48,7 +46,7 @@ Multimodal/
 │   ├── PROCESSED_DATA/   # preprocessed .set/.fdt (local)
 │   ├── RESULTS/          # .mat results (local) + FIGURES/*.png (git)
 │   ├── references/       # reference papers
-│   ├── experiments/      # past runs: 10s/20s windows, memory/matematica (local)
+│   ├── experiments/      # past runs: 10s/20s windows, memory/mathematic (local)
 │   └── archive/          # phase-1 scripts & single-subject data (local)
 ├── fMRI/
 │   ├── corr_analysis.m   # sliding-window ROI connectivity
